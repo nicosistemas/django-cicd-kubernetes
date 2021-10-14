@@ -1,0 +1,26 @@
+name: DjangoCI
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: Check out code
+    - uses: mr-smithers-excellent/docker-build-push@v5
+      name: Build & push Docker image
+      with:
+        image: nicosistemas/django-cicd-kubernetes
+        tags: v1, latest
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+ #   - name: Install Dependencies
+  #    run: |
+   #     python -m pip install --upgrade pip
+    #    pip install -r requirements.txt
+   # - name: Run Tests
+   #   run: |
+   #     python manage.py test
