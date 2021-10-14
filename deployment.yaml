@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probando-django
+  namespace: test-nico
+  labels:
+    app: probando-django
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: probando-django
+  template:
+    metadata:
+      labels:
+        app: probando-django
+    spec:
+      containers:
+      - name: probando-django
+        image: nicosistemas/probando-django:latest
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: "Always"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: probando-django
+  labels:
+    name: probando-django
+spec:
+  type: NodePort
+  ports:
+    - port: 8000
+      # nodePort: 30080
+      name: http
+  selector:
+    name: probando-django
