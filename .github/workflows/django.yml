@@ -13,7 +13,7 @@ jobs:
       name: Build & push Docker image
       with:
         image: nicosistemas/probando-django
-        tags: v1, latest
+        tags: ${{ github.sha }}, latest
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
