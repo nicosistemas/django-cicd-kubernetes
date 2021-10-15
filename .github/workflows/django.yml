@@ -10,14 +10,14 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
       
-      #- name: Build & Push Docker Image
-      # uses: mr-smithers-excellent/docker-build-push@v5
-      # with:
-        #image: nicosistemas/probando-django
-        #tags: ${{ github.sha }}, latest
-        # registry: docker.io
-        # username: ${{ secrets.DOCKER_USERNAME }}
-        # password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build & Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: nicosistemas/probando-django
+        tags: ${{ github.sha }}, latest
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Deploy the Docker image to the kubernetes cluster
       uses: cancue/eks-action@v0.0.2
@@ -28,5 +28,5 @@ jobs:
         cluster_name: stg
       with:
         args: |
-          kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:latest  # ${{ github.sha }}
+          kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
           kubectl rollout status deployment/probando-django -n test-nico
