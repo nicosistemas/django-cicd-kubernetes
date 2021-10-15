@@ -24,7 +24,7 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        args: kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
+        args: set image deployment/probando-django -n test-nico probando-django=nicosistemas/probando-django:lastest
         #    - name: verify deployment
         #      uses: steebchen/kubectl@master
         #      env:
