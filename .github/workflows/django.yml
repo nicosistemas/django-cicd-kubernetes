@@ -19,16 +19,14 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Deploy to Kubernetes Cluster
-      uses: steebchen/kubectl@master
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      with:
-        args: set image deployment/probando-django -n test-nico probando-django=nicosistemas/probando-django:lastest
-        #    - name: verify deployment
-        #      uses: steebchen/kubectl@master
-        #      env:
-        #        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        #        KUBECTL_VERSION: "1.20"
-        #      with:
-        #        args: '"rollout status deployment/my-app"'
+      - name: Deploy the Docker image to the kubernetes cluster
+        uses: cancue/eks-action@v0.0.2
+        env:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: us-east-1
+          cluster_name: stg.us-east-1.eksctl.io
+        with:
+          args: |
+            kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
+            kubectl rollout status deployment/probando-django -n test-nico
