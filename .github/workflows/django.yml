@@ -28,6 +28,5 @@ jobs:
         cluster_name: stg
       with:
         args: |
-                #kubectl get pods -n test-nico
           kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:latest  # ${{ github.sha }}
           kubectl rollout status deployment/probando-django -n test-nico
