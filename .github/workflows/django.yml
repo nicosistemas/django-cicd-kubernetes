@@ -28,5 +28,6 @@ jobs:
         cluster_name: stg.us-east-1.eksctl.io
       with:
         args: |
-          kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
-          kubectl rollout status deployment/probando-django -n test-nico
+          kubectl get pods
+                #kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
+                # kubectl rollout status deployment/probando-django -n test-nico
