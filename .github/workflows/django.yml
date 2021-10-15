@@ -7,21 +7,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      name: Check out code
-    - uses: mr-smithers-excellent/docker-build-push@v5
-      name: Build & push Docker image
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Build & Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: nicosistemas/probando-django
         tags: ${{ github.sha }}, latest
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
- #   - name: Install Dependencies
-  #    run: |
-   #     python -m pip install --upgrade pip
-    #    pip install -r requirements.txt
-   # - name: Run Tests
-   #   run: |
-   #     python manage.py test
-   #
+
+    - name: Deploy to Kubernetes Cluster
+      uses: steebchen/kubectl@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      with:
+        args: kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
+        #    - name: verify deployment
+        #      uses: steebchen/kubectl@master
+        #      env:
+        #        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        #        KUBECTL_VERSION: "1.20"
+        #      with:
+        #        args: '"rollout status deployment/my-app"'
