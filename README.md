@@ -5,8 +5,9 @@ La aplicación de prueba escrita en Python/django es dockerizada, pusheada al re
 
 Mi Docker Hub: https://hub.docker.com/repository/docker/nicosistemas/probando-django/general
 
-To Do on cluster:
+Por el momento no es accedible a una url https poqrue no tengo Ingress ni dominio propio, lo que hago es emularlo con ngrok para ser consumida
+
+
+To Do on cluster la primera vez:
 
 kubectl apply -f deployment.yaml -n test-nico
-
-Por el momento no es accedible a una url https poqrue no tengo Ingress ni dominio propio, lo que hago es emularlo con ngrok para ser consumida
