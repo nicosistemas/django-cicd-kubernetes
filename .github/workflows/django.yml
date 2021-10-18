@@ -9,6 +9,10 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
+    - name: GitHub Action for Pytest
+      uses: cclauss/GitHub-Action-for-pytest@master
+      with:
+        args: pytest ./docker_django/hola_docker/*.py
     - name: autopep8
       id: autopep8
       uses: peter-evans/autopep8@v1
