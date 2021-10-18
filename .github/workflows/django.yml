@@ -12,7 +12,7 @@ jobs:
     - name: GitHub Action for Pytest
       uses: cclauss/GitHub-Action-for-pytest@master
       with:
-        args: pytest ./*/*
+        args: pytest docker_django/hola_docker/*.py
     - name: Build & Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
