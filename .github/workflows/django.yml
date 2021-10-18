@@ -13,6 +13,11 @@ jobs:
       # uses: cclauss/GitHub-Action-for-pytest@master
       # with:
       # args: pytest docker_django/hola_docker/*.py
+    - name: Run AutoPEP8
+      id: autopep8
+      uses: peter-evans/autopep8@v1
+      with:
+        args: --recursive --in-place --aggressive --aggressive .
     - name: Build & Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
@@ -22,7 +27,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Deploy the Docker image to the kubernetes cluster
+    - name: Deploy build to kubernetes cluster
       uses: cancue/eks-action@v0.0.2
       env:
         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
