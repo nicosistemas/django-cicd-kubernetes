@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-def hola(request):
+defd hola(request):
     context = {
         "hola": "Hola desde Kubernetes pero deployado con github actions, una locura esto!"
     }

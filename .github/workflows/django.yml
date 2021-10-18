@@ -12,12 +12,7 @@ jobs:
     - name: GitHub Action for Pytest
       uses: cclauss/GitHub-Action-for-pytest@master
       with:
-              args: pytest ./docker_django/hola_docker/views.py
-      #    - name: autopep8
-      #      id: autopep8
-      #      uses: peter-evans/autopep8@v1
-      #      with:
-              #        args: --recursive --in-place --aggressive --aggressive ./docker_django/hola_docker/     
+        args: pytest ./*/*
     - name: Build & Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
