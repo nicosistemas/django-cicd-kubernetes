@@ -1,7 +1,8 @@
-# django-cicd-kubernetes
+# Challenge DevOps
+## django-cicd-kubernetes
 django project pipeline cicd github actions to deploy on kubernetes cluster
 
-# CICD TEST
+## CICD TEST
 La aplicación de prueba escrita en Python/django es dockerizada, pusheada al registry de Docker y deployada en un cluster de Kubernetes. 
 Con solo realizar un push a Master se ejecutan los jobs del pipeline.
 
