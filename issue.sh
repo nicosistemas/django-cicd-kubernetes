@@ -1,1 +1,1 @@
-print('este es un archivo agregado despues del issue para probar esta mecánica')
+print('este es un archivo agregado despues del issue para probar esta mecánica - version 1.2.0')
