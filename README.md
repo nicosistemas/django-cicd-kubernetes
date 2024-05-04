@@ -20,3 +20,11 @@ ej:https://c116-2803-9800-98c4-8511-3c4-7187-7855-f2ea.ngrok.io/hola/   (local c
 To Do on cluster la primera vez (el pipeline no crea los pods, si los "updatea/deploya"):
 
 kubectl apply -f deployment.yaml -n test-nico
+
+
+## Contiene pruebas para Github Fundations (UPDATE)
+* Templates de PR
+* Templates de Issues
+* Labels
+* Diferentes Markdowns
+* Tags y Releases
