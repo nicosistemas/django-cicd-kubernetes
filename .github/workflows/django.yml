@@ -26,15 +26,15 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Deploy build to kubernetes cluster
-      uses: cancue/eks-action@v0.0.2
-      env:
-        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws_region: us-east-1
-        cluster_name: stg
-      with:
-        args: |
-          kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
-          kubectl rollout status deployment/probando-django -n test-nico
+#
+#    - name: Deploy build to kubernetes cluster
+#      uses: cancue/eks-action@v0.0.2
+#      env:
+#        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#        aws_region: us-east-1
+#        cluster_name: stg
+#      with:
+#        args: |
+#          kubectl set image deployment probando-django -n test-nico probando-django=nicosistemas/probando-django:${{ github.sha }}
+#          kubectl rollout status deployment/probando-django -n test-nico
