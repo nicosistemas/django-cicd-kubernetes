@@ -28,3 +28,7 @@ kubectl apply -f deployment.yaml -n test-nico
 * Labels
 * Diferentes Markdowns
 * Tags y Releases
+* prioridad de Readme.md
+  - .github
+  - root
+  - docs
